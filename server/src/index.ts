@@ -1,5 +1,5 @@
 const express = require("express");
-const socketio = require("socket.io");
+import { Server, Socket } from "socket.io";
 const http = require("http");
 const cors = require("cors");
 
@@ -16,13 +16,34 @@ const app = express();
 const server = http.createServer(app);
 
 // Cors problem
-app.use(cors({
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"]
-}));
+app.use(cors());
 
 // Setup socket.io
-const io = socketio(server);
+const io = new Server(server, {
+    cors:{
+        origin: "http://localhost:3000",
+        methods: ["GET", "POST"]
+    }
+});
+
+// Run when clien connect
+io.on('connection', (socket: Socket) => {
+
+    // Message when clien and server connect
+    console.log("We have now socket.io connection");
+    
+    // Message to the user when login
+    io.emit('message', 'Welcome to Chat group');
+
+    // Broadcast when a user connects
+    socket.broadcast.emit('message', 'A user joined the conversation');
+
+    // Message when user disconnect
+    socket.on('disconnect', () => {
+        io.emit('message', 'A user has left the chat')
+    })
+    
+});
 
 app.use(router);
 
