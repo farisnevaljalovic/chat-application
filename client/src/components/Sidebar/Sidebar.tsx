@@ -4,12 +4,12 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlinePalette } from "react-icons/md";
 import UsersList from '../UsersList/UsersList';
 
-function Sidebar() {
+function Sidebar(props:{username:string}) {
     return (
         <div className={style.sidebar}>
             <div className={style.groupBox}>
                 <h2>Group chat</h2>
-                <h3>Your name: <span>Faris</span></h3>
+                <h3>Your name: <span>{props.username}</span></h3>
             </div>
             <div className={style.activeUsers}>
                 <h3>Active User</h3>

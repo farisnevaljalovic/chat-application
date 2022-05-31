@@ -6,6 +6,12 @@ const cors = require("cors");
 // Require router
 const router = require("./router");
 
+// Require functions for user
+const { addUser, disconnectUser, getAllUsers } = require('./user');
+
+// Require random name generator
+const randomName = require('./randomName');
+
 // Server port
 const PORT = 8000;
 
@@ -31,6 +37,16 @@ io.on('connection', (socket: Socket) => {
 
     // Message when clien and server connect
     console.log("We have now socket.io connection");
+
+    // Get random username
+    socket.on('get-username', (status: boolean) => {
+        if (status) {
+            let username = randomName();
+            addUser(socket.id, username);
+            socket.emit('user-join', username)
+        }
+    });
+    
     
     // Message to the user when login
     io.emit('message', 'Welcome to Chat group');

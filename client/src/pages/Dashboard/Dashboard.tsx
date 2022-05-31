@@ -7,18 +7,18 @@ import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import MobileSidebar from '../../components/MobileSidebar/MobileSidebar';
 
-function Dashboard() {
+function Dashboard(props: {username:string}) {
     const [menu, setMenu] = useState(false);
     return (
         <div className="container">
             <div className={style.dashboard}>
                 <div className={style.leftBox}>
                     <Header menu={menu} setMenu={setMenu}/>
-                    <Sidebar />
+                    <Sidebar username={props.username}/>
                     {menu? <MobileSidebar /> : null}
                 </div>
                 <div className={style.rightBox}>
-                    <ChatHeader />
+                    <ChatHeader username={props.username} />
                     <Messages />
                     <MessageForm />
                 </div>

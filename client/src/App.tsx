@@ -9,34 +9,34 @@ const PORT = "http://localhost:8000";
 
 function App() {
   const socket = io(PORT);
+  const [status, setStatus] = useState(false);
   const [connected, setConnected] = useState(false);
-  const [name, setName] = useState('');
-
-  const getName = (name:string) => {
-    setName(name);
-    if (name !== '') {
-      setConnected(true);
-    }
-  }
+  const [username, setUsername] = useState('');
   
   useEffect(() => {
-    if (socket) {
-     console.log('radi');
-     
-   }
-  }, [socket]);
-  
+    // send request for random name
+    if (status) {
+      socket.emit('get-username', status);
+    }
+
+    // get name from server
+    socket.on('user-join', username => {
+      setUsername(username);
+      if (username !== '') {
+        setConnected(true);
+        setStatus(false);
+      }
+    })
+  }, [socket, status]);
 
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path={"/"} element={connected ? <Navigate replace to="/chat" /> : <Login getName={getName} />} />
-          <Route path={'/chat'} element={!connected ? <Navigate replace to="/" /> : <Dashboard />} />
+          <Route path={"/"} element={connected ? <Navigate replace to="/chat" /> : <Login setStatus={setStatus} />} />
+          <Route path={'/chat'} element={!connected ? <Navigate replace to="/" /> : <Dashboard username={username}/>} />
         </Routes>
       </BrowserRouter>
-      {/* {!connected && <Login getName={getName} />}
-      {connected && <Dashboard />} */}
     </div>
   );
 }
