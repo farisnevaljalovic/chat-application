@@ -1,0 +1,8 @@
+.activeUserList{
+    max-height: 200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: var(--dark-gray);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+}

@@ -1,0 +1,30 @@
+.header{
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    display: flex;
+    align-items: center;
+}
+.logoTitle{
+    margin-left: 10px;
+    font-size: var(--font-lg);
+}
+.menu{
+    display: none;
+    width: 50px;
+    height: 50px;
+    font-size: var(--font-3xl);  
+    background-color: var(--dark-gray);
+    border-radius: var(--radius-md);  
+}
+/*  media query for mobile  */
+@media screen and (max-width: 670px) {
+    .menu{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}

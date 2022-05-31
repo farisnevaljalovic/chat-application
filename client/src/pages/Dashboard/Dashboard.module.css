@@ -1,0 +1,56 @@
+.dashboard{
+    width: 70%;
+    height: 80%;
+    padding: 20px;
+    background-color: var(--dark);
+    border-radius: var(--radius-3xl);
+    box-shadow: var(--shadow-xl);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+.leftBox{
+    flex: 0.4;
+    /* padding-left: 20px; */
+    display: flex;
+    flex-direction: column;
+}
+.rightBox{
+    flex: 0.6;
+    width: 100%;
+    height: 100%;
+    padding: 30px;
+    background-color: var(--dark-gray);
+    border-radius: var(--radius-2xl);
+    display: flex;
+    flex-direction: column;
+}
+/* media queri for tablet  */
+@media screen and (max-width: 780px) {
+    .leftBox{
+        padding-right: 10px;
+    }
+}
+/*  media queri for mobile  */
+@media screen and (max-width: 670px) {
+    .dashboard{
+        width: 90%;
+        height: 90%;
+        padding: 20px;
+        flex-direction: column;
+        position: relative;
+    }
+    .leftBox{
+        flex: none;
+        width: 100%;
+        height: 10%;
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: none;
+    }
+    .rightBox{
+        flex: none;
+        width: 100%;
+        height: 85%;
+    }
+}

@@ -1,0 +1,26 @@
+.messageForm{
+    height: 10%;
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+.messageForm textarea{
+    width: 80%;
+    height: 100%;
+    padding: 10px 10px;
+    outline: none;
+    border: none;
+    box-sizing: border-box;
+    resize: none;
+}
+.messageForm button{
+    width: 20%;
+    height: 100%;
+    outline: none;
+    border: none;
+    color: var(--text);
+    background-color: var(--dark-blue);
+    font-size: var(--font-sm);
+    cursor: pointer;
+}
