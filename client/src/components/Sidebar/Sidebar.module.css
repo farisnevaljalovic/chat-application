@@ -57,6 +57,14 @@
 .themeSettings:hover{
     background-color: var(--dark-blue);
 }
+.activeUserList{
+    max-height: 200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: var(--dark-gray);
+    border-radius: var(--radius-lg);
+    overflow-x: auto;
+}
 
 /* media query for tablet */
 @media screen and (max-width: 780px) {

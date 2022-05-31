@@ -5,7 +5,10 @@ import User from './User/User';
 function UsersList() {
     return (
         <ul className={style.activeUserList}>
-            <User />
+            {/* {props.connectedUsers.map(user => (
+                // <User key={user.id} user={user} />
+                <h1>faris</h1>
+            ))} */}
         </ul>
     )
 }

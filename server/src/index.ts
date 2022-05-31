@@ -32,31 +32,32 @@ const io = new Server(server, {
     }
 });
 
+// admin name and chat name
+let ADMIN = 'Admin';
+let CHAT = 'Group chat';
+
 // Run when clien connect
 io.on('connection', (socket: Socket) => {
+    socket.join(CHAT);
 
     // Message when clien and server connect
     console.log("We have now socket.io connection");
 
-    // Get random username
-    socket.on('get-username', (status: boolean) => {
-        if (status) {
-            let username = randomName();
-            addUser(socket.id, username);
-            socket.emit('user-join', username)
-        }
+    // Get random username 
+    socket.on('handle-connection', (username: string) => {
+        
+        if (addUser(socket.id, username)) {
+            socket.emit('user-connected');
+            io.to(CHAT).emit('get-connected-users', getAllUsers());
+        }   
     });
-    
-    
-    // Message to the user when login
-    io.emit('message', 'Welcome to Chat group');
-
-    // Broadcast when a user connects
-    socket.broadcast.emit('message', 'A user joined the conversation');
+    socket.on('message', (message: { message: string, username: string }) => {
+        socket.broadcast.emit('receive-message', message);
+    })
 
     // Message when user disconnect
     socket.on('disconnect', () => {
-        io.emit('message', 'A user has left the chat')
+        disconnectUser(socket.id);
     })
     
 });
