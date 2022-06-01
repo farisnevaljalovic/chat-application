@@ -4,8 +4,10 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlinePalette } from "react-icons/md";
 import UsersList from '../UsersList/UsersList';
 import User from '../UsersList/User/User';
+import { setSyntheticLeadingComments } from 'typescript';
 
-function Sidebar(props: { username: string, connectedUsers: {id:string, username:string}[]}) {
+
+function Sidebar(props: { theme: string, setTheme: Function, username: string, connectedUsers: { id: string, username: string }[] }) {
     const allConnectedUsers = props.connectedUsers.map(user => (
         <User key={user.id} user={user} />
     ))
@@ -28,7 +30,7 @@ function Sidebar(props: { username: string, connectedUsers: {id:string, username
                     <AiOutlineLogout />
                     {/* <span>Logout</span> */}
                 </div>
-                <div className={`${style.themeSettings} ${style.actionBtn}`}>
+                <div className={`${style.themeSettings} ${style.actionBtn}`} onClick={()=> props.setTheme(props.theme === 'light' ? 'dark': 'light')}>
                     <MdOutlinePalette />
                     {/* <span>Palette</span> */}
                 </div>

@@ -7,15 +7,15 @@ import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import MobileSidebar from '../../components/MobileSidebar/MobileSidebar';
 
-function Dashboard(props: { username: string, sendMessage: Function, messages: { username: string; text: string;  time:string}[], connectedUsers: {id: string, username:string}[]}) {
+function Dashboard( props: { theme: string, setTheme: Function, username: string, sendMessage: Function, messages: { username: string; text: string;  time:string}[], connectedUsers: {id: string, username:string}[]}) {
     const [menu, setMenu] = useState(false);
     return (
         <div className="container">
             <div className={style.dashboard}>
                 <div className={style.leftBox}>
                     <Header menu={menu} setMenu={setMenu}/>
-                    <Sidebar username={props.username} connectedUsers={props.connectedUsers}/>
-                    {menu ? <MobileSidebar connectedUsers={props.connectedUsers}/> : null}
+                    <Sidebar username={props.username} connectedUsers={props.connectedUsers} theme={props.theme} setTheme={props.setTheme}/>
+                    {menu ? <MobileSidebar connectedUsers={props.connectedUsers} theme={props.theme} setTheme={props.setTheme}/> : null}
                 </div>
                 <div className={style.rightBox}>
                     <ChatHeader username={props.username} />

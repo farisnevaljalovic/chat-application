@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../../components/Logo/Logo';
 import style from "./Login.module.css";
-
+// props: { getName: Function }
 function Login(props: { getName: Function }) {
     const createNewName = () => {
         let first = '';

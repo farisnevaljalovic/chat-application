@@ -22,9 +22,9 @@
 }
 .btn{
     padding: 7px 14px;
-    border: 1px solid var(--dark-green);
+    border: 1px solid var(--btn-login-border);
     outline: none;
-    background-color: var(--bg-body-light);
+    background-color: var(--btn-login);
     border-radius: var(--radius-sm);
     font-size: var(--font-md);
     transition: 0.2s;
@@ -54,6 +54,7 @@
         border: none;
         background-color: var(--white);
         font-weight: 500;
+        border: 1px solid var(--dark-green);
     }
     .btn:hover{
         color: var(--text-light);

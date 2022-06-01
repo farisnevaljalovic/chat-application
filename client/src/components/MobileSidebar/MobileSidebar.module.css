@@ -38,6 +38,11 @@
 .logout:hover{
     background-color: var(--dark-red);
 }
+.logout a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .themeSettings{
     background-color: var(--light-blue);
 }

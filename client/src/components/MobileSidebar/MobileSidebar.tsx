@@ -5,7 +5,7 @@ import { AiOutlineLogout } from "react-icons/ai";
 import { MdOutlinePalette, MdGroups } from "react-icons/md";
 import User from '../UsersList/User/User';
 
-function MobileSidebar(props: { connectedUsers: { id: string, username: string }[] }) {
+function MobileSidebar(props: { theme:string, setTheme:Function, connectedUsers: { id: string, username: string }[] }) {
     const allConnectedUsers = props.connectedUsers.map(user => (
         <User key={user.id} user={user} />
     ))
@@ -20,17 +20,18 @@ function MobileSidebar(props: { connectedUsers: { id: string, username: string }
             </div>
             <div className={style.actionBtns}>
                 <div className={`${style.logout} ${style.actionBtn}`}>
-                    <AiOutlineLogout />
+                    <a href='/'><AiOutlineLogout /></a>
+                    
                     {/* <span>Logout</span> */}
                 </div>
-                <div className={`${style.themeSettings} ${style.actionBtn}`}>
+                <div className={`${style.themeSettings} ${style.actionBtn}`} onClick={()=> props.setTheme(props.theme === 'light' ? 'dark': 'light')}>
                     <MdOutlinePalette />
                     {/* <span>Palette</span> */}
                 </div>
-                <div className={`${style.group} ${style.actionBtn}`}>
+                {/* <div className={`${style.group} ${style.actionBtn}`}>
                     <MdGroups />
-                    {/* <span>Group</span> */}
-                </div>
+                    
+                </div> */}
             </div>
         </div>
     )
