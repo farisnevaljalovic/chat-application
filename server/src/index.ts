@@ -9,6 +9,9 @@ const router = require("./router");
 // Require functions for user
 const { addUser, disconnectUser, getAllUsers } = require('./user');
 
+// Require message format
+const formatMessage = require("./formatMessage");
+
 // Require random name generator
 const randomName = require('./randomName');
 
@@ -22,9 +25,9 @@ const app = express();
 const server = http.createServer(app);
 
 // Cors problem
-app.use(cors());
-
-// Setup socket.io
+app.use(cors());  
+  
+// Setup socket.io 
 const io = new Server(server, {
     cors:{
         origin: "http://localhost:3000",
@@ -38,28 +41,35 @@ let CHAT = 'Group chat';
 
 // Run when clien connect
 io.on('connection', (socket: Socket) => {
-    socket.join(CHAT);
-
     // Message when clien and server connect
     console.log("We have now socket.io connection");
-
-    // Get random username 
-    socket.on('handle-connection', (username: string) => {
+    
+    socket.on('join-chat', (username: string) => { 
         
-        if (addUser(socket.id, username)) {
-            socket.emit('user-connected');
-            io.to(CHAT).emit('get-connected-users', getAllUsers());
-        }   
+        const user = addUser(socket.id, username);
+         
+        // Welcome current user
+        socket.emit('message', formatMessage(ADMIN, `Welcome to ${CHAT}`));
+
+        // Broadcast when a user connects
+        socket.broadcast.emit('message', formatMessage(ADMIN, `${username} has joined the chat`));
+        
+        io.emit('get-connected-users', getAllUsers());
     });
-    socket.on('message', (message: { message: string, username: string }) => {
-        socket.broadcast.emit('receive-message', message);
-    })
+
+    // get user message
+    socket.on('user-message', (message: { text: string, username: string }) => {        
+        io.emit('message', formatMessage(message.username, message.text));  
+    });
 
     // Message when user disconnect
     socket.on('disconnect', () => {
-        disconnectUser(socket.id);
+        const user = disconnectUser(socket.id);
+        if (user) {
+            io.emit('message', formatMessage(ADMIN, `${user.username} has left the chat`));
+        }
     })
-    
+
 });
 
 app.use(router);

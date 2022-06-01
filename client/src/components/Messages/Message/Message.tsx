@@ -1,14 +1,15 @@
 import React from 'react';
 import style from "./Message.module.css";
 
-function Message(props: { message: { username: string; message: string; } }) {
+function Message(props: { mess: { username: string; text: string; time: string } }) {
+    
     return (
         <li className={style.message}>
             <div className={style.messageInfo}>
-                <p>{props.message.username}</p>
-                <span>2:22 am</span>
+                <p>{props.mess.username}</p>
+                <span>{props.mess.time}</span>
             </div>
-            <p className={style.messageText}>{props.message.message}</p>
+            <p className={style.messageText}>{props.mess.text}</p>
         </li>
     )
 }

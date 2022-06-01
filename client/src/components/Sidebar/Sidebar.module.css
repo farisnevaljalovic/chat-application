@@ -13,7 +13,7 @@
 
 }
 .groupBox h3{
-    font-size: var(--font-sm);
+    font-size: var(--font-xs);
 }
 .groupBox h3 span{
     color: var(--dark-green);
@@ -63,13 +63,15 @@
     padding: 10px;
     background-color: var(--dark-gray);
     border-radius: var(--radius-lg);
+    font-size: var(--font-xs);
     overflow-x: auto;
 }
 
 /* media query for tablet */
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 830px) {
     .sidebar{
         width: 100%;
+        padding-right: 10px;
     }
     .groupBox h2{
         font-size: var(--font-sm);

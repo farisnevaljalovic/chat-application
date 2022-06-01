@@ -7,7 +7,7 @@ import Header from '../../components/Header/Header';
 import Sidebar from '../../components/Sidebar/Sidebar';
 import MobileSidebar from '../../components/MobileSidebar/MobileSidebar';
 
-function Dashboard(props: { username: string,setMessage: Function, messages: { username: string;  message: string}[], connectedUsers: {id: string, username:string}[]}) {
+function Dashboard(props: { username: string, sendMessage: Function, messages: { username: string; text: string;  time:string}[], connectedUsers: {id: string, username:string}[]}) {
     const [menu, setMenu] = useState(false);
     return (
         <div className="container">
@@ -15,12 +15,12 @@ function Dashboard(props: { username: string,setMessage: Function, messages: { u
                 <div className={style.leftBox}>
                     <Header menu={menu} setMenu={setMenu}/>
                     <Sidebar username={props.username} connectedUsers={props.connectedUsers}/>
-                    {menu? <MobileSidebar /> : null}
+                    {menu ? <MobileSidebar connectedUsers={props.connectedUsers}/> : null}
                 </div>
                 <div className={style.rightBox}>
                     <ChatHeader username={props.username} />
                     <Messages messages={props.messages}/>
-                    <MessageForm setMessage={props.setMessage}/>
+                    <MessageForm sendMessage={props.sendMessage}/>
                 </div>
             </div>
         </div>

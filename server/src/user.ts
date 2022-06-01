@@ -15,7 +15,6 @@ const addUser = (id: string, username: string) => {
     return true
 }
 
-
 const disconnectUser = (id: string) => {
     const filterUsers = users.filter(user => user.id !== id);
     users = filterUsers

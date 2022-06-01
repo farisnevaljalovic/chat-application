@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import style from "./MessageForm.module.css";
 
-function MessageForm(props: {setMessage:Function}) {
+function MessageForm(props: {sendMessage:Function}) {
     const [message, setMessage] = useState('');
-    const handleSubmit = (e:any) => {
-        e.prevetDefault();
-        props.setMessage(message);
-        setMessage('')
-    }
     return (
-        <form className={style.messageForm} onSubmit={handleSubmit}>
+        <form className={style.messageForm}
+            onSubmit={e => {
+                e.preventDefault();
+                props.sendMessage(message);
+                setMessage('')
+            }}
+        >
             <textarea placeholder="Write something..." value={message} onChange={(e)=> setMessage(e.target.value)}></textarea>
             <button>Send</button>
         </form>

@@ -20,7 +20,7 @@ function Sidebar(props: { username: string, connectedUsers: {id:string, username
                 <h3>Active User</h3>
                 {/* <UsersList connectedUsers={props.connectedUsers}/> */}
                 <ul className={style.activeUserList}>
-                    {allConnectedUsers}
+                    {allConnectedUsers.length < 1? 'No active users yet' : allConnectedUsers}
                 </ul>
             </div>
             <div className={style.actionBtns}>

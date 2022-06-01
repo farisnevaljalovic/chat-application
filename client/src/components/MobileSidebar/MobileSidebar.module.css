@@ -50,6 +50,15 @@
 .group:hover{
     background-color: var(--dark-green);
 }
+.activeUserList{
+    max-height: 200px;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: var(--dark-gray);
+    border-radius: var(--radius-lg);
+    font-size: var(--font-xs);
+    overflow-x: auto;
+}
 /* media query for mobile */
 @media screen and (max-width: 670px) {
     .sidebar{

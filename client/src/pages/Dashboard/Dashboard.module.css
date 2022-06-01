@@ -28,7 +28,11 @@
 /* media queri for tablet  */
 @media screen and (max-width: 780px) {
     .leftBox{
+        flex: 0.5;
         padding-right: 10px;
+    }
+    .rightBox{
+        flex: 0.5;
     }
 }
 /*  media queri for mobile  */
