@@ -93,10 +93,7 @@ io.on("connection", (socket: Socket) => {
     const user = disconnectUser(socket.id);
     await User.findOneAndUpdate({ username }, { status: false });
     // if (user) {
-    //   io.emit(
-    //     "message",
-    //     formatMessage(ADMIN, `${user.username} has left the chat`)
-    //   );
+    //   io.emit("message", formatMessage(ADMIN, `${user.username} has left the chat`));
     // }
   });
 });
