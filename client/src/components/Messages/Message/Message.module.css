@@ -23,6 +23,14 @@
 .messageText{
     font-size: var(--font-sm);
 }
+.userMess{
+    margin-left: auto;
+    background-color: var(--dark-green);
+}
+.adminMess{
+    width: 100% !important;
+    background-color: var(--dark-red);
+}
 /* media query for tablet  */
 @media screen and (max-width: 780px) {
     .messageInfo{

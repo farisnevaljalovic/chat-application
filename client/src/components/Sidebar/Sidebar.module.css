@@ -68,7 +68,7 @@
 }
 
 /* media query for tablet */
-@media screen and (max-width: 830px) {
+@media screen and (max-width: 835px) {
     .sidebar{
         width: 100%;
         padding-right: 10px;
