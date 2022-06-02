@@ -2,7 +2,7 @@ import React from "react";
 import Logo from "../../components/Logo/Logo";
 import style from "./Login.module.css";
 import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+
 function Login(props: { getName: Function }) {
   const user = localStorage.getItem("user");
 
